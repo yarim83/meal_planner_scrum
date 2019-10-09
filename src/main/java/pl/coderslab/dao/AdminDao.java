@@ -2,6 +2,7 @@ package pl.coderslab.dao;
 
 import pl.coderslab.model.Admin;
 import pl.coderslab.utils.DbUtil;
+import pl.coderslab.utils.PasswordUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ public class AdminDao {
     private static final String UPDATE_ADMIN_QUERY = "UPDATE admins SET first_name = ?, last_name =?, email = ?, password = ?, superadmin=?, enable =? WHERE id = ?;";
     private static final String DELETE_ADMIN_QUERY = "DELETE FROM admins WHERE id = ?;";
     private static final String FIND_ALL_ADMIN_QUERY = "SELECT * FROM admins;";
-
+    private static final String READ_ADMIN_BY_EMAIL_QUERY = "SELECT * FROM admins WHERE email = ?;";
 
 
     public static Admin create(Admin admin) {
@@ -52,7 +53,7 @@ public class AdminDao {
                     exist = true;
                 }
             }
-            if (exist == false) {
+            if (!exist) {
                 return null;
             }
             ResultSet rs = preStmt.executeQuery();
@@ -125,4 +126,45 @@ public class AdminDao {
             return null;
         }
     }
+
+    public static boolean checkLoginData(String email, String password) {
+        try (Connection conn = DbUtil.getConnection()) {
+            Admin admin = new Admin();
+            PreparedStatement preStmt = conn.prepareStatement(READ_ADMIN_BY_EMAIL_QUERY);
+            preStmt.setString(1, email);
+            boolean exist = false;
+            for (int i = 0; i < findAll().size(); i++) {
+                if (email.equals(findAll().get(i).getEmail())) {
+                    exist = true;
+                }
+            }
+            if(!exist){
+                return false;
+            }
+
+            ResultSet rs = preStmt.executeQuery();
+            if (rs.next()) {
+                admin.setId(rs.getInt("id"));
+                admin.setFirst_name(rs.getString("first_name"));
+                admin.setLast_name(rs.getString("last_name"));
+                admin.setEmail(rs.getString("email"));
+                admin.setPassword(rs.getString("password"));
+                admin.setSuperadmin(rs.getInt("superadmin"));
+                admin.setEnable(rs.getInt("enable"));
+            }
+
+            boolean passwordMatch = PasswordUtil.checkPasswordMatch(password, admin.getPassword());
+
+            if (exist && passwordMatch) {
+                return true;
+            }
+
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Nie mozna wczytac wiersza");
+            return false;
+        }
+    }
+
 }
