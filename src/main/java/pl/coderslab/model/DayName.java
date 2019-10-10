@@ -7,7 +7,7 @@ public class DayName {
 
     @Override
     public String toString() {
-        return "Book [id=" + id + ", name=" + name + ", display_order=" + displayOrder;
+        return "Book [id=" + id + ", name=" + name + ", display_order=" + displayOrder +"]";
     }
 
 
