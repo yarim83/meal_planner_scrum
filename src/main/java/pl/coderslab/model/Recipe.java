@@ -31,8 +31,7 @@ public class Recipe {
 
     public Recipe(){}
 
-    public Recipe(int id, String name, String ingredients, String description, Timestamp created, Timestamp updated, int preparationTime, String preparation, int adminId) {
-        this.id = id;
+    public Recipe(String name, String ingredients, String description, Timestamp created, Timestamp updated, int preparationTime, String preparation, int adminId) {
         this.name = name;
         this.ingredients = ingredients;
         this.description = description;
