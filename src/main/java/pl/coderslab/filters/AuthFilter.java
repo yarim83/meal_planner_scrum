@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
@@ -24,6 +25,7 @@ public class AuthFilter implements Filter {
 
         if (username == null){
             LOGGER.info("user not logged!");
+            ((HttpServletResponse) servletResponse).sendRedirect("/login");
         } else {
             LOGGER.info("user logged:", username);
             filterChain.doFilter(servletRequest,servletResponse);
