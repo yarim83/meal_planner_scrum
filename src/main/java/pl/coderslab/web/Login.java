@@ -26,7 +26,7 @@ public class Login extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/html/login.html")
+        getServletContext().getRequestDispatcher("/login.jsp")
                 .forward(request, response);
     }
 }
