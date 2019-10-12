@@ -152,6 +152,11 @@ public class PlanDao {
         return plan;
     }
 
+    /**
+     * number of plans for logged user
+     * @param admin_id
+     * @return
+     */
     public int numberOfPlans (int admin_id) {
         int counter = 0;
         try (Connection connection = DbUtil.getConnection();
