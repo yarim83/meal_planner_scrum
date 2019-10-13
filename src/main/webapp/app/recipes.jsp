@@ -8,11 +8,11 @@
 
 <body>
 
-<%@include file="header2.jsp"%>
+<%@include file="../jsp/header2.jsp"%>
 
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
-        <%@include file="dashboardleft.jsp"%>
+        <%@include file="../jsp/dashboardleft.jsp"%>
 
 
         <div class="m-4 p-3 width-medium">
