@@ -19,9 +19,8 @@ public class AppRecipes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();
-        System.out.println(httpSession.getAttribute("username"));
-        // Konieczność zmodygikowania. Należy wyciągnąć z sesji AdminId.
-        List<Recipe> recipeList = RecipeDao.findAllForUser(1);
+        int adminId = (int) httpSession.getAttribute("adminId");
+        List<Recipe> recipeList = RecipeDao.findAllForUser(adminId);
         req.setAttribute("recipeList", recipeList);
 
         getServletContext()
