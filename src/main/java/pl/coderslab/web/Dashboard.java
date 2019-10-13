@@ -2,6 +2,7 @@ package pl.coderslab.web;
 
 import pl.coderslab.dao.PlanDao;
 import pl.coderslab.dao.RecipeDao;
+import pl.coderslab.model.Admin;
 import pl.coderslab.model.Plan;
 
 import javax.servlet.ServletException;
@@ -18,11 +19,12 @@ public class Dashboard extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession httpSession = req.getSession();
-        String email = (String) httpSession.getAttribute("email");
+        Admin admin = (Admin) httpSession.getAttribute( "admin");
+       // String email = (String) httpSession.getAttribute("email");
 
         PlanDao planDao = new PlanDao();
-        int numberOfAddedPlans = planDao.numberOfPlans(email);
-        Plan plan = planDao.lastAdded(email);
+        int numberOfAddedPlans = planDao.numberOfPlans(admin.getEmail());
+        Plan plan = planDao.lastAdded(admin.getEmail());
         RecipeDao recipeDao = new RecipeDao();
         int numberOfAddedRecipes = 5; // a czasem zastpić poprawnym kodem z recipeDao jak tylko Tomek napisze metodę.
 

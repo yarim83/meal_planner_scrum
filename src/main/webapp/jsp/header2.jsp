@@ -6,7 +6,7 @@
             Zaplanuj <span>Jedzonko</span>
         </a>
         <div class="d-flex justify-content-around">
-            <h4 class="text-light mr-3">${not empty username ? username : "Imie"}</h4>
+            <h4 class="text-light mr-3">${not empty admin.first_name ? admin.first_name : "Imie"}</h4>
             <div class="circle-div text-center"><i class="fas fa-user icon-user"></i></div>
         </div>
     </nav>
