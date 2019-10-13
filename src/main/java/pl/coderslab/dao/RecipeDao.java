@@ -18,6 +18,8 @@ public class RecipeDao {
     private static final String FIND_ALL_RECIPE_QUERY = "SELECT * FROM recipe;";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE recipe SET name=? , ingredients=?, description=?, created=?, preparation_time=?, preparation=?, admin_id=?  WHERE id=?;";
+    private static final String FIND_EXACT_BY_ADMIN_ID = "    SELECT * FROM recipe WHERE admin_id = ? ORDER BY created DESC LIMIT ?;";
+    private static final String FIND_BY_ADMIN_ID = "    SELECT * FROM recipe WHERE admin_id = ? ORDER BY created DESC;";
 
     /**
      * Create recipe
@@ -79,11 +81,73 @@ public class RecipeDao {
     }
 
     /**
+     * Read exact numer of recipes from adminId
+     *
+     * @param exactNumber
+     * @param adminId
+     * @return
+     */
+    public static List<Recipe> findExact(int exactNumber, int adminId) {
+        List<Recipe> recipeList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_EXACT_BY_ADMIN_ID)) {
+            statement.setInt(1, adminId);
+            statement.setInt(2, exactNumber);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Recipe recipe = new Recipe();
+                recipe.setId(resultSet.getInt("id"));
+                recipe.setName(resultSet.getString("name"));
+                recipe.setIngredients(resultSet.getString("ingredients"));
+                recipe.setDescription(resultSet.getString("description"));
+                recipe.setCreated(resultSet.getTimestamp("created"));
+                recipe.setUpdated(resultSet.getTimestamp("updated"));
+                recipe.setPreparationTime(resultSet.getInt("preparation_time"));
+                recipe.setPreparation(resultSet.getString("preparation"));
+                recipeList.add(recipe);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return recipeList;
+    }
+
+    /**
+     * find all recipes for specific admin
+     *
+     * @param adminId
+     * @return
+     */
+    public static List<Recipe> findAllForUser(int adminId) {
+        List<Recipe> recipeList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_BY_ADMIN_ID)) {
+            statement.setInt(1, adminId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Recipe recipe = new Recipe();
+                recipe.setId(resultSet.getInt("id"));
+                recipe.setName(resultSet.getString("name"));
+                recipe.setIngredients(resultSet.getString("ingredients"));
+                recipe.setDescription(resultSet.getString("description"));
+                recipe.setCreated(resultSet.getTimestamp("created"));
+                recipe.setUpdated(resultSet.getTimestamp("updated"));
+                recipe.setPreparationTime(resultSet.getInt("preparation_time"));
+                recipe.setPreparation(resultSet.getString("preparation"));
+                recipeList.add(recipe);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return recipeList;
+    }
+
+    /**
      * Read all plans
      *
      * @return
      */
-    public List<Recipe> findAll() {
+    public static List<Recipe> findAll() {
         List<Recipe> recipeList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ALL_RECIPE_QUERY);
@@ -114,7 +178,7 @@ public class RecipeDao {
      * @param id
      * @return
      */
-    public Recipe read(int id) {
+    public static Recipe read(int id) {
         Recipe recipe = new Recipe();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(READ_RECIPE_QUERY)) {
@@ -148,7 +212,7 @@ public class RecipeDao {
              PreparedStatement statement = connection.prepareStatement(UPDATE_RECIPE_QUERY)) {
             statement.setString(1, recipe.getName());
             statement.setString(2, recipe.getIngredients());
-            statement.setString(3,recipe.getDescription());
+            statement.setString(3, recipe.getDescription());
             statement.setTimestamp(4, recipe.getCreated());
             statement.setTimestamp(5, recipe.getUpdated());
             statement.setInt(6, recipe.getPreparationTime());
@@ -159,4 +223,6 @@ public class RecipeDao {
             e.printStackTrace();
         }
     }
+
+
 }
