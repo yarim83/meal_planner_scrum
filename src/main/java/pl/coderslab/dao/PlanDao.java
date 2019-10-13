@@ -18,8 +18,8 @@ public class PlanDao {
     private static final String FIND_ALL_PLANS_QUERY = "SELECT * FROM plan;";
     private static final String READ_PLAN_QUERY = "SELECT * from plan where id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name=? , description=?, created=?, admin_id=? WHERE id=?;";
-    private static final String READ_LAST_ADDED_PLAN_QUERY = "SELECT * FROM plan WHERE admin_id=? ORDER by created DESC LIMIT 1;";
-    private static final String COUNT_PLAN_QUERY = "SELECT * FROM plan WHERE admin_id=?;";
+    private static final String READ_LAST_ADDED_PLAN_QUERY = "SELECT * FROM plan WHERE admin_id = (SELECT id FROM admins WHERE email = ?) ORDER by created DESC LIMIT 1;";
+    private static final String COUNT_PLAN_QUERY = "SELECT * FROM plan WHERE admin_id = (SELECT id FROM admins WHERE email = ?);";
 
     /**
      * Create plan
@@ -129,21 +129,21 @@ public class PlanDao {
 
     /**
      * get last added plan
-     * @param admin_id
+     * @param email
      * @return
      */
-    public Plan lastAdded (int admin_id) {
+    public Plan lastAdded (String email) {
         Plan plan = new Plan();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(READ_LAST_ADDED_PLAN_QUERY)) {
-            statement.setInt(1, admin_id);
+            statement.setString(1, email);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     plan.setId(resultSet.getInt("id"));
                     plan.setName(resultSet.getString("name"));
                     plan.setDescription(resultSet.getString("description"));
                     plan.setCreated(resultSet.getTimestamp("created"));
-                    plan.setAdmin_id(admin_id);
+                    plan.setAdmin_id(resultSet.getInt("admin_id"));
                 }
             }
         } catch (Exception e) {
@@ -154,14 +154,14 @@ public class PlanDao {
 
     /**
      * number of plans for logged user
-     * @param admin_id
+     * @param email
      * @return
      */
-    public int numberOfPlans (int admin_id) {
+    public int numberOfPlans (String email) {
         int counter = 0;
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(COUNT_PLAN_QUERY)) {
-            statement.setInt(1, admin_id);
+            statement.setString(1, email);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     counter++;

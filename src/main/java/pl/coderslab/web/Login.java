@@ -19,6 +19,7 @@ public class Login extends HttpServlet {
         if (AdminDao.checkLoginData(email, password)) {
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute("username", "username");
+            httpSession.setAttribute("email", "email");
             response.sendRedirect("/");
         } else {
             response.sendRedirect("/login?msg=Wprowadzono+bledne+dane");
