@@ -22,6 +22,8 @@ public class Login extends HttpServlet {
             Admin admin = adminDao.readByEmail(email);
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute("username", admin);
+            httpSession.setAttribute("email", email);
+
             response.sendRedirect("/");
         } else {
             response.sendRedirect("/login?msg=Wprowadzono+bledne+dane");
