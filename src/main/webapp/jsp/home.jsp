@@ -3,32 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%@include file="jsp/head.jsp"%>
+<%@include file="head.jsp"%>
 <body>
-<header class="page-header">
-    <nav class="navbar navbar-expand-lg justify-content-around">
-        <a href="/" class="navbar-brand main-logo">
-            Zaplanuj <span>Jedzonko</span>
-        </a>
-        <ul class="nav nounderline text-uppercase">
-            <li class="nav-item ml-4">
-                <a class="nav-link color-header" href="login.html">logowanie</a>
-            </li>
-            <li class="nav-item ml-4">
-                <a class="nav-link color-header" href="registration.html">rejestracja</a>
-            </li>
-            <li class="nav-item ml-4">
-                <a class="nav-link" href="#about">o aplikacji</a>
-            </li>
-            <li class="nav-item ml-4">
-                <a class="nav-link disabled" href="recipes.html">Przepisy</a>
-            </li>
-            <li class="nav-item ml-4">
-                <a class="nav-link disabled" href="#contact">Kontakt</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+<%@include file="header.jsp"%>
 
 <section class="padding-large bg-light">
     <div id="carouselExampleControls" class="carousel slide main-slider" data-ride="carousel">
@@ -196,7 +173,7 @@
         </div>
     </div>
 </section>
-<%@include file="jsp/footer.jsp"%>
+<%@include file="footer.jsp"%>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"

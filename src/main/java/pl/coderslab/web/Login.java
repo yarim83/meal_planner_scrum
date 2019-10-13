@@ -23,6 +23,7 @@ public class Login extends HttpServlet {
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute("username", admin);
             httpSession.setAttribute("adminId", admin.getId());
+            httpSession.setAttribute("email", email);
             response.sendRedirect("/");
         } else {
             response.sendRedirect("/login?msg=Wprowadzono+bledne+dane");

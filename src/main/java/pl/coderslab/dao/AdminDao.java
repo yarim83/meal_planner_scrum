@@ -51,6 +51,7 @@ public class AdminDao {
             for (int i = 0; i < findAll().size(); i++) {
                 if (findAll().get(i).getId() == id) {
                     exist = true;
+                    break;
                 }
             }
             if (!exist) {
@@ -70,6 +71,39 @@ public class AdminDao {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Nie mozna wczytac wiersza o id: " + id);
+            return null;
+        }
+    }
+
+    public Admin readByEmail(String email) {
+        try (Connection conn = DbUtil.getConnection()) {
+            Admin admin = new Admin();
+            PreparedStatement preStmt = conn.prepareStatement(READ_ADMIN_BY_EMAIL_QUERY);
+            preStmt.setString(1, email);
+            boolean exist = false;
+            for (int i = 0; i < findAll().size(); i++) {
+                if (email.equals(findAll().get(i).getEmail())) {
+                    exist = true;
+                    break;
+                }
+            }
+            if (!exist) {
+                return null;
+            }
+            ResultSet rs = preStmt.executeQuery();
+            if (rs.next()) {
+                admin.setId(rs.getInt("id"));
+                admin.setFirst_name(rs.getString("first_name"));
+                admin.setLast_name(rs.getString("last_name"));
+                admin.setEmail(rs.getString("email"));
+                admin.setPassword(rs.getString("password"));
+                admin.setSuperadmin(rs.getInt("superadmin"));
+                admin.setEnable(rs.getInt("enable"));
+            }
+            return admin;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Nie mozna wczytac wiersza");
             return null;
         }
     }
@@ -138,7 +172,7 @@ public class AdminDao {
                     exist = true;
                 }
             }
-            if(!exist){
+            if (!exist) {
                 return false;
             }
 
