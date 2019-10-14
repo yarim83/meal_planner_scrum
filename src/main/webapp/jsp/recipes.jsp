@@ -3,16 +3,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%@include file="../jsp/head.jsp"%>
+<%@include file="head.jsp"%>
 
 
 <body>
 
-<%@include file="../jsp/header2.jsp"%>
+<%@include file="header2.jsp"%>
 
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
-        <%@include file="../jsp/dashboardleft.jsp"%>
+        <%@include file="dashboardleft.jsp"%>
 
 
         <div class="m-4 p-3 width-medium">

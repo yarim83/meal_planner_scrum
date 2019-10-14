@@ -23,7 +23,7 @@ public class AddRecipe extends HttpServlet {
         String ingredients = request.getParameter("ingredients");
 
         HttpSession httpSession = request.getSession();
-        Admin admin = (Admin) httpSession.getAttribute("username");
+        Admin admin = (Admin) httpSession.getAttribute("admin");
 
         Recipe recipe = new Recipe(name, ingredients, description, new Timestamp(System.currentTimeMillis()), null, preparationTime, preparation, admin.getId());
         RecipeDao recipeDao = new RecipeDao();

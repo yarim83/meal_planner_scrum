@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/app/*")
+@WebFilter("/web/*")
 public class AuthFilter implements Filter {
     private static final Logger LOGGER = LogManager.getLogger(AuthFilter.class);
 
