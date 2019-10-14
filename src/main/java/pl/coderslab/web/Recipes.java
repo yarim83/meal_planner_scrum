@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/app/recipe/list")
+@WebServlet("/recipes")
 public class Recipes extends HttpServlet {
 
     @Override
@@ -19,6 +19,8 @@ public class Recipes extends HttpServlet {
         List<Recipe> recipesList = RecipeDao.findAll();
         req.setAttribute("recipeList", recipesList);
 
-        getServletContext().getRequestDispatcher("/jsp/recipes.jsp").forward(req,resp);
+        getServletContext()
+                .getRequestDispatcher("/jsp/recipes.jsp")
+                .forward(req,resp);
     }
 }

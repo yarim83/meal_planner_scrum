@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,13 +26,13 @@
         </tr>
         </thead>
         <tbody class="text-color-lighter">
-        <c:forEach items="${}" varStatus="recipeIndex" var="recipe">
+        <c:forEach items="${recipeList}" varStatus="recipeIndex" var="recipe">
         <tr class="d-flex">
-            <th scope="row" class="col-1">1</th>
+            <th scope="row" class="col-1">${recipeIndex.index}</th>
             <td class="col-5">
-                Zapiekanka z ziemniakami i brukselką
+                ${recipe.name}
             </td>
-            <td class="col-5">Mamusina najlepsza zapiekanka pod słońcem. Można ją podać jako główne danie albo jako kolację. W zapiekance możesz użyć również kiełbasy paprykowej sprawi ona, że zapiekanka będzie ostrzejsza w smaku. Zgodnie z zalecanimi Makłowicza, podawać z dobrze dobranym winkiem ;)</td>
+            <td class="col-5">${recipe.description}</td>
             <td class="col-1"><a href="#" class="btn btn-info rounded-0 text-light">Szczegóły</a></td>
         </tr>
         </c:forEach>

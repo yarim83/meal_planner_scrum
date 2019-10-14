@@ -17,6 +17,7 @@ import java.util.List;
 
 @WebServlet("/app/recipe/list")
 public class AppRecipes extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();
