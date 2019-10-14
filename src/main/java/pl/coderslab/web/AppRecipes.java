@@ -25,7 +25,7 @@ public class AppRecipes extends HttpServlet {
         req.setAttribute("recipeList", recipeList);
 
         getServletContext()
-                .getRequestDispatcher("/jsp/recipes.jsp")
+                .getRequestDispatcher("/jsp/app-recipes.jsp")
                 .forward(req, resp);
     }
 }
