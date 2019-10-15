@@ -14,13 +14,13 @@
             <div class="dashboard-header m-4">
                 <div class="dashboard-menu">
                     <div class="menu-item border-dashed">
-                        <a href="">
+                        <a href="/app/recipe/add">
                             <i class="far fa-plus-square icon-plus-square"></i>
                             <span class="title">dodaj przepis</span>
                         </a>
                     </div>
                     <div class="menu-item border-dashed">
-                        <a href="">
+                        <a href="/app/plan/add">
                             <i class="far fa-plus-square icon-plus-square"></i>
                             <span class="title">dodaj plan</span>
                         </a>
@@ -36,7 +36,7 @@
                 <div class="dashboard-alerts">
                     <div class="alert-item alert-info">
                         <i class="fas icon-circle fa-info-circle"></i>
-                        <span class="font-weight-bold">Liczba przepisów: ${not empty numberOfAddedRecipes ? numberOfAddedRecopes : "0"}</span>
+                        <span class="font-weight-bold">Liczba przepisów: ${not empty numberOfAddedRecipes ? numberOfAddedRecipes : "0"}</span>
                     </div>
                     <div class="alert-item alert-light">
                         <i class="far icon-calendar fa-calendar-alt"></i>

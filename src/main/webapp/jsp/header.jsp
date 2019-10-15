@@ -17,7 +17,7 @@
                 <a class="nav-link color-header" href="/about">o aplikacji</a>
             </li>
             <li class="nav-item ml-4">
-                <a class="nav-link disabled" href="recipes.html">Przepisy</a>
+                <a class="nav-link color-header" href="/recipes">Przepisy</a>
             </li>
             <li class="nav-item ml-4">
                 <a class="nav-link color-header" href="/contact">Kontakt</a>

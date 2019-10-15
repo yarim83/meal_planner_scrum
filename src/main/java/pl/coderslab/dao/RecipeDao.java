@@ -113,7 +113,6 @@ public class RecipeDao {
     }
 
     /**
-
      * find all recipes for specific admin
      *
      * @param adminId
@@ -141,6 +140,27 @@ public class RecipeDao {
             e.printStackTrace();
         }
         return recipeList;
+    }
+
+    /**
+     * Return number of recipes by adminId
+     *
+     * @param adminId
+     * @return
+     */
+    public int numberOfRecipesByAdminId(int adminId) {
+        int counter = 0;
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_BY_ADMIN_ID)) {
+            statement.setInt(1, adminId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                counter++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return counter;
     }
 
     /**
