@@ -26,8 +26,7 @@ public class Dashboard extends HttpServlet {
         int numberOfAddedPlans = planDao.numberOfPlans(admin.getEmail());
         Plan plan = planDao.lastAdded(admin.getEmail());
         RecipeDao recipeDao = new RecipeDao();
-        int numberOfAddedRecipes = 5; // a czasem zastpić poprawnym kodem z recipeDao jak tylko Tomek napisze metodę.
-
+        int numberOfAddedRecipes = recipeDao.numberOfRecipesByAdminId(admin.getId());
         httpSession.setAttribute("plan", plan);
         httpSession.setAttribute("numberOfAddedPlans", numberOfAddedPlans);
         httpSession.setAttribute("numberOfAddedRecipes", numberOfAddedRecipes);
