@@ -52,7 +52,7 @@ public class AddRecipeToPlan extends HttpServlet {
         Admin admin = (Admin) httpSession.getAttribute("admin");
 
         PlanDao planDao = new PlanDao();
-        List<Plan> adminPlans = PlanDao.findAllForUser(admin.getId());
+        List<Plan> adminPlans = PlanDao.findAllByAdmin(admin.getId());
         request.setAttribute("plans", adminPlans);
 
         RecipeDao recipeDao = new RecipeDao();
