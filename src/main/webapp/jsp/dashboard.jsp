@@ -26,7 +26,7 @@
                         </a>
                     </div>
                     <div class="menu-item border-dashed">
-                        <a href="">
+                        <a href="/app/recipe/plan/add">
                             <i class="far fa-plus-square icon-plus-square"></i>
                             <span class="title">dodaj przepis do planu</span>
                         </a>
@@ -44,6 +44,7 @@
                     </div>
                 </div>
             </div>
+            <div class="details">${not empty param.msg ? param.msg :  ""}</div>
             <div class="m-4 p-4 border-dashed">
                 <h2 class="dashboard-content-title">
                     <span>Ostatnio dodany plan:</span> ${not empty plan ? plan.name : "Nie posiadasz jeszcze planu."}

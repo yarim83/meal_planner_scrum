@@ -62,15 +62,22 @@ public class AddRecipeToPlan extends HttpServlet {
         DayNameDao dayNameDao = new DayNameDao();
         request.setAttribute("days", dayNameDao.findAll());
 
-        getServletContext().getRequestDispatcher("/jsp/app-schedules-meal-recipe.jsp")
-                .forward(request, response);
+        if (adminPlans.size() == 0) {
+            response.sendRedirect("/dashboard?msg=Nie+posiadasz+jeszcze+zadnych+planow!");
+        } else if (adminRecipes.size() == 0) {
+            response.sendRedirect("/dashboard?msg=Nie+posiadasz+jeszcze+zadnych+przepisow!");
+        } else {
+            getServletContext().getRequestDispatcher("/jsp/app-schedules-meal-recipe.jsp")
+                    .forward(request, response);
+        }
+
     }
 
     private boolean checkIfpositionOnPlanDayExist(int planId, int numberOfMeal, int dayId) {
         List<RecipePlan> list = RecipePlanDao.readByPlanId(planId);
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getDisplay_order() == numberOfMeal && list.get(i).getDay_name_id() == dayId) {
-               return true;
+                return true;
             }
         }
         return false;
