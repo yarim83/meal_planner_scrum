@@ -18,8 +18,8 @@ public class PlanDao {
     private static final String FIND_ALL_PLANS_QUERY = "SELECT * FROM plan;";
     private static final String READ_PLAN_QUERY = "SELECT * FROM plan where id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name=? , description=?, created=?, admin_id=? WHERE id=?;";
-    private static final String READ_LAST_ADDED_PLAN_QUERY = "SELECT * FROM plan WHERE admin_id = (SELECT id FROM admins WHERE email = ?) ORDER by created DESC LIMIT 1;";
-    private static final String COUNT_PLAN_QUERY = "SELECT * FROM plan WHERE admin_id = (SELECT id FROM admins WHERE email = ?);";
+    private static final String READ_LAST_ADDED_PLAN_QUERY = "SELECT * FROM plan WHERE admin_id = ? ORDER by created DESC LIMIT 1;";
+    private static final String COUNT_PLAN_QUERY = "SELECT * FROM plan WHERE admin_id = ?;";
     private static final String FIND_ALL_PLANS_BY_ADMIN_QUERY = "SELECT * FROM plan WHERE admin_id = ?;";
 
     /**
@@ -154,14 +154,14 @@ public class PlanDao {
     /**
      * get last added plan
      *
-     * @param email
+     * @param adminId
      * @return
      */
-    public Plan lastAdded(String email) {
+    public Plan lastAdded(int adminId) {
         Plan plan = new Plan();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(READ_LAST_ADDED_PLAN_QUERY)) {
-            statement.setString(1, email);
+            statement.setInt(1, adminId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     plan.setId(resultSet.getInt("id"));
@@ -180,14 +180,14 @@ public class PlanDao {
     /**
      * number of plans for logged user
      *
-     * @param email
+     * @param adminId
      * @return
      */
-    public int numberOfPlans(String email) {
+    public int numberOfPlans(int adminId) {
         int counter = 0;
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(COUNT_PLAN_QUERY)) {
-            statement.setString(1, email);
+            statement.setInt(1, adminId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     counter++;
