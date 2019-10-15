@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/web/*")
+@WebFilter("/app/*")
 public class AuthFilter implements Filter {
     private static final Logger LOGGER = LogManager.getLogger(AuthFilter.class);
 
@@ -21,7 +21,7 @@ public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpSession session = ((HttpServletRequest) servletRequest).getSession();
-        Object username =  session.getAttribute("username");
+        Object username =  session.getAttribute("admin");
 
         if (username == null){
             LOGGER.info("user not logged!");
