@@ -11,8 +11,7 @@ public class RecipePlan {
     public RecipePlan() {
     }
 
-    public RecipePlan(int id, int recipe_id, String meal_name, int display_order, int day_name_id, int plan_id) {
-        this.id = id;
+    public RecipePlan(int recipe_id, String meal_name, int display_order, int day_name_id, int plan_id) {
         this.recipe_id = recipe_id;
         this.meal_name = meal_name;
         this.display_order = display_order;
