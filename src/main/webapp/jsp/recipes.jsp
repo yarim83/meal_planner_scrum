@@ -3,58 +3,87 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%@include file="head.jsp"%>
-
-
-<body>
-
-<%@include file="header2.jsp"%>
-
-<section class="dashboard-section">
-    <div class="row dashboard-nowrap">
-        <%@include file="dashboardleft.jsp"%>
-
-
-        <div class="m-4 p-3 width-medium">
-            <div class="dashboard-content border-dashed p-3 m-4 view-height">
-                <div class="row border-bottom border-3 p-1 m-1">
-                    <div class="col noPadding"><h3 class="color-header text-uppercase">Lista Przepisów</h3></div>
-                    <div class="col noPadding d-flex justify-content-end mb-2"><a href="/app-add-recipe.html" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj przepis</a></div>
-                </div>
-                <table class="table border-bottom schedules-content">
-                    <thead>
-                    <tr class="d-flex text-color-darker">
-                        <th scope="col" class="col-1">ID</th>
-                        <th scope="col" class="col-2">NAZWA</th>
-                        <th scope="col" class="col-7">OPIS</th>
-                        <th scope="col" class="col-2 center">AKCJE</th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-color-lighter">
-
-                    <c:forEach items="${recipeList}" varStatus="recipeIndex" var="recipe">
-                        <tr class="d-flex">
-                            <th scope="row" class="col-1">${recipeIndex.index}</th>
-                            <td class="col-2">
-                                    ${recipe.name}
-                            </td>
-                            <td class="col-7">${recipe.description}</td>
-                            <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
-                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                <a href="/app-recipe-details.html" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                                <a href="/app-edit-recipe.html" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
+<%@include file="head.jsp"%>>
+<body class="recipes-section">
+<%@include file="header.jsp"%>
+<section>
+    <div class="row padding-small">
+        <i class="fas fa-users icon-users"></i>
+        <h1>Przepisy naszych użytkowników:</h1>
+        <hr>
+        <div class="orange-line w-100"></div>
     </div>
 </section>
 
+<section class="mr-4 ml-4">
+    <table class="table">
+        <thead>
+        <tr class="d-flex text-color-darker">
+            <th scope="col" class="col-1">ID</th>
+            <th scope="col" class="col-5">NAZWA</th>
+            <th scope="col" class="col-5">OPIS</th>
+            <th scope="col" class="col-1">AKCJE</th>
+        </tr>
+        </thead>
+        <tbody class="text-color-lighter">
+        <c:forEach items="${recipeList}" varStatus="recipeIndex" var="recipe">
+        <tr class="d-flex">
+            <th scope="row" class="col-1">${recipeIndex.index}</th>
+            <td class="col-5">
+                ${recipe.name}
+            </td>
+            <td class="col-5">${recipe.description}</td>
+            <td class="col-1"><a href="#" class="btn btn-info rounded-0 text-light">Szczegóły</a></td>
+        </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</section>
 
+<section class="last-info-section padding-small">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="mb-4">Lorem ipsum dolor</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna.</p>
+            </div>
+            <div class="col pl-4 ml-4">
+                <h3 class="mb-4">Lorem ipsum dolor</h3>
+                <ul class="container">
+                    <li>consectetur adipiscing elit</li>
+                    <li>sed do eiusmod tempor</li>
+                    <li>incididunt ut labore</li>
+                    <li>et dolore magna aliqua</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3 class="mb-4">Lorem ipsum dolor</h3>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control border-0 rounded-0" placeholder=""
+                           aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="input-group-text btn-color border-0 rounded-0" type="submit" id="basic-addon2"><a
+                                href="index.html">Lorem</a></button>
+                    </div>
+                </div>
+                <div class="container d-flex-row">
+                    <a href="#">
+                        <i class="fab fa-facebook-square mr-4 icon-social"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-twitter-square mr-4 icon-social"></i>
+
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-instagram icon-social"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%@include file="footer.jsp"%>>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"

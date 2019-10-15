@@ -17,6 +17,7 @@ import java.util.List;
 
 @WebServlet("/app/recipe/list")
 public class AppRecipes extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();
@@ -25,7 +26,7 @@ public class AppRecipes extends HttpServlet {
         req.setAttribute("recipeList", recipeList);
 
         getServletContext()
-                .getRequestDispatcher("/jsp/recipes.jsp")
+                .getRequestDispatcher("/jsp/app-recipes.jsp")
                 .forward(req, resp);
     }
 }
