@@ -15,7 +15,7 @@
     <div class="row dashboard-nowrap">
         <ul class="nav flex-column long-bg">
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard.html">
+                <a class="nav-link" href="/dashboard">
                     <span>Pulpit</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
@@ -70,7 +70,7 @@
                                 Wybierz plan
                             </label>
                             <div class="col-sm-3">
-                                <select class="form-control" id="choosePlan">
+                                <select class="form-control" id="choosePlan" name="plan">
                                     <c:forEach var="item" items="${plans}">
                                        <option value="${item.id}">${item.name}</option>
                                    </c:forEach>
@@ -99,8 +99,8 @@
                             </label>
                             <div class="col-sm-4">
                                 <select class="form-control" id="recipie" name="recipe">
-                                    <c:forEach var="recipes" items="${recipes}">
-                                        <option value="${recipe.id}">${recipes.name}</option>
+                                    <c:forEach var="recipe" items="${recipes}">
+                                        <option value="${recipe.id}">${recipe.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -117,6 +117,8 @@
                                 </select>
                             </div>
                         </div>
+                        <input type="submit" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4" value="Dodaj" >
+                        <br /><h3 ><center>${not empty param.msg ? param.msg :  ""}</center></h3>
                     </form>
                 </div>
             </div>

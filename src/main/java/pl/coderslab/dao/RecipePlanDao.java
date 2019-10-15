@@ -16,7 +16,7 @@ public class RecipePlanDao {
     private static final String UPDATE_RECIPE_PLAN_QUERY = "UPDATE recipe_plan SET recipe_id = ?, meal_name =?, display_order = ?, day_name_id = ?, plan_id = ? WHERE id = ?";
     private static final String DELETE_RECIPE_PLAN_QUERY = "DELETE FROM recipe_plan WHERE id = ?";
     private static final String FIND_ALL_RECIPE_PLAN_QUERY = "SELECT * FROM recipe_plan";
-    private static final String READ_ADMIN_BY_PLAN_ID_QUERY = "SELECT * FROM admins WHERE plan_id = ?";
+    private static final String READ_RECIPE_PLAN_BY_PLAN_ID_QUERY = "SELECT * FROM recipe_plan WHERE plan_id = ?";
 
 
     public static RecipePlan create(RecipePlan recipePlan) {
@@ -119,6 +119,30 @@ public class RecipePlanDao {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Nie mozna wczytac wszystkich wierszy z tabeli recipe_plan");
+            return null;
+        }
+    }
+
+    public static List<RecipePlan> readByPlanId(int planId) {
+        try (Connection conn = DbUtil.getConnection()) {
+            List<RecipePlan> recipePlans = new ArrayList<>();
+            PreparedStatement preStmt = conn.prepareStatement(READ_RECIPE_PLAN_BY_PLAN_ID_QUERY);
+            preStmt.setInt(1, planId);
+            ResultSet rs = preStmt.executeQuery();
+            while (rs.next()) {
+                RecipePlan recipePlan = new RecipePlan();
+                recipePlan.setId(rs.getInt("id"));
+                recipePlan.setRecipe_id(rs.getInt("recipe_id"));
+                recipePlan.setMeal_name(rs.getString("meal_name"));
+                recipePlan.setDisplay_order(rs.getInt("display_order"));
+                recipePlan.setDay_name_id(rs.getInt("day_name_id"));
+                recipePlan.setPlan_id(rs.getInt("plan_id"));
+                recipePlans.add(recipePlan);
+            }
+            return recipePlans;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Nie mozna wczytac podanych wierszy z tabeli recipe_plan");
             return null;
         }
     }
