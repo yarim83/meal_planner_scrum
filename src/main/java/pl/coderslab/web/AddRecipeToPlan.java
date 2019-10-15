@@ -51,6 +51,7 @@ public class AddRecipeToPlan extends HttpServlet {
         HttpSession httpSession = request.getSession();
         Admin admin = (Admin) httpSession.getAttribute("admin");
 
+        PlanDao planDao = new PlanDao();
         List<Plan> adminPlans = PlanDao.findAllByAdmin(admin.getId());
         request.setAttribute("plans", adminPlans);
 
