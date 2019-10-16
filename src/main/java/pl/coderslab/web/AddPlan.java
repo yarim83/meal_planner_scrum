@@ -28,7 +28,7 @@ public class AddPlan extends HttpServlet {
         PlanDao planDao = new PlanDao();
         planDao.create(plan);
 
-        resp.sendRedirect("app/plan/list");
+        resp.sendRedirect("/app/plan/list");
     }
 
     @Override

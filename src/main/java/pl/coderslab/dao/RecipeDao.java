@@ -65,7 +65,7 @@ public class RecipeDao {
      *
      * @param id
      */
-    public void delete(int id) {
+    public static void delete(int id) {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_RECIPE_QUERY)) {
             statement.setInt(1, id);
