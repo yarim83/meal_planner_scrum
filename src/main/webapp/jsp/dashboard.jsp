@@ -50,30 +50,25 @@
                     <span>Ostatnio dodany plan:</span> ${not empty plan ? plan.name : "Nie posiadasz jeszcze planu."}
                 </h2>
                 <table class="table">
+                    <c:if test="${not empty plan}">
+                    <c:forEach varStatus="loop" var="planList" items="${recipePlanList}">
                     <thead>
                     <tr class="d-flex">
-                        <th class="col-2"></th>
+                        <th class="col-2">${planList.day_name_id}</th>
                         <th class="col-8"></th>
                         <th class="col-2"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:if test="${not empty plan}">
                         <tr class="d-flex">
-                            <td class="col-2">${plan.name}</td>
-                            <td class="col-8">${plan.description}</td>
+                            <td class="col-2">${planList.meal_name}</td>
+                            <td class="col-8">${planList.meal_name}</td>
                             <td class="col-2"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></td>
 <%--                            ten button będzie do poprawki, ma odnosić do konkretnego planu jak tylko powstanie widok szczegułów pojedyńczego planu--%>
                         </tr>
-                    </c:if>
-                    <c:if test="${empty plan}">
-                        <tr class="d-flex">
-                            <td class="col-2">obiad</td>
-                            <td class="col-8">zupa pomidorowa</td>
-                            <td class="col-2"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></td>
-                        </tr>
-                    </c:if>
                     </tbody>
+                    </c:forEach>
+                    </c:if>
                 </table>
 
             </div>
