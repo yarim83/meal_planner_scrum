@@ -23,14 +23,15 @@ public class Dashboard extends HttpServlet {
 
         HttpSession httpSession = req.getSession();
         Admin admin = (Admin) httpSession.getAttribute( "admin");
-       // String email = (String) httpSession.getAttribute("email");
 
         PlanDao planDao = new PlanDao();
         int numberOfAddedPlans = planDao.numberOfPlans(admin.getId());
         Plan plan = planDao.lastAdded(admin.getId());
         int planId = plan.getId();
+
         RecipePlanDao recipePlanDao = new RecipePlanDao();
         List<RecipePlan> recipePlanList = recipePlanDao.readByPlanId(planId);
+
         RecipeDao recipeDao = new RecipeDao();
         int numberOfAddedRecipes = recipeDao.numberOfRecipesByAdminId(admin.getId());
 
