@@ -23,8 +23,8 @@ public class Dashboard extends HttpServlet {
        // String email = (String) httpSession.getAttribute("email");
 
         PlanDao planDao = new PlanDao();
-        int numberOfAddedPlans = planDao.numberOfPlans(admin.getEmail());
-        Plan plan = planDao.lastAdded(admin.getEmail());
+        int numberOfAddedPlans = planDao.numberOfPlans(admin.getId());
+        Plan plan = planDao.lastAdded(admin.getId());
         RecipeDao recipeDao = new RecipeDao();
         int numberOfAddedRecipes = recipeDao.numberOfRecipesByAdminId(admin.getId());
         httpSession.setAttribute("plan", plan);
