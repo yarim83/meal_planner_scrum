@@ -52,7 +52,7 @@ public class Dashboard extends HttpServlet {
 
             planCollection.add(planCollect);
         }
-        
+
         httpSession.setAttribute("plan", plan);
         httpSession.setAttribute("collection", planCollection);
         httpSession.setAttribute("recipePlanList", recipePlanList);

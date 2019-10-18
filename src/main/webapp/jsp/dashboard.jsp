@@ -1,14 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-    <%@include file="head.jsp"%>
+<%@include file="head.jsp" %>
 <body>
-    <%@include file="header2.jsp"%>
+<%@include file="header2.jsp" %>
 
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
-        <%@include file="dashboardleft.jsp"%>
+        <%@include file="dashboardleft.jsp" %>
 
         <div class="m-4 p-4 width-medium">
             <div class="dashboard-header m-4">
@@ -51,22 +51,31 @@
                 </h2>
                 <table class="table">
                     <c:if test="${not empty plan}">
-                    <c:forEach varStatus="loop" var="collectionItem" items="${collection}">
-                    <thead>
-                    <tr class="d-flex">
-                        <th class="col-2">${collectionItem.dayName}</th>
-                        <th class="col-8"></th>
-                        <th class="col-2"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="d-flex">
-                            <td class="col-2">${collectionItem.mealName}</td>
-                            <td class="col-8">${collectionItem.description}</td>
-                            <td class="col-2"><button type="button" class="btn btn-primary rounded-0" onclick="window.location.href='/app/recipe/details?id=${collectionItem.recipeId}'">Szczegóły</button></td>
-                        </tr>
-                    </tbody>
-                    </c:forEach>
+                        <c:set var="Today" value="none"></c:set>
+                        <c:forEach varStatus="loop" var="collectionItem" items="${collection}">
+                            <c:if test="${Today ne collectionItem.dayName}">
+                                <c:set var="Today" value="${collectionItem.dayName}"></c:set>
+                                <thead>
+                                <tr class="d-flex">
+                                    <th class="col-2">${collectionItem.dayName}</th>
+                                    <th class="col-8"></th>
+                                    <th class="col-2"></th>
+                                </tr>
+                                </thead>
+                            </c:if>
+                            <tbody>
+                            <tr class="d-flex">
+                                <td class="col-2">${collectionItem.mealName}</td>
+                                <td class="col-8">${collectionItem.description}</td>
+                                <td class="col-2">
+                                    <button type="button" class="btn btn-primary rounded-0"
+                                            onclick="window.location.href='/app/recipe/details?id=${collectionItem.recipeId}'">
+                                        Szczegóły
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </c:forEach>
                     </c:if>
                 </table>
 
@@ -76,11 +85,14 @@
 </section>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 </body>
 </html>
