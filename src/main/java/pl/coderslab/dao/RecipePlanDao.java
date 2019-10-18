@@ -88,7 +88,7 @@ public class RecipePlanDao {
         }
     }
 
-    public void delete(int id) {
+    public static void delete(int id) {
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement preStmt = conn.prepareStatement(DELETE_RECIPE_PLAN_QUERY);
             preStmt.setInt(1, id);
