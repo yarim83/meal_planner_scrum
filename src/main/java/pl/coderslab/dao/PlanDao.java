@@ -61,7 +61,7 @@ public class PlanDao {
      *
      * @param id
      */
-    public void delete(int id) {
+    public static void delete(int id) {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PLAN_QUERY)) {
             statement.setInt(1, id);
@@ -131,7 +131,7 @@ public class PlanDao {
      * @param id
      * @return
      */
-    public Plan read(int id) {
+    public static Plan read(int id) {
         Plan plan = new Plan();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(READ_PLAN_QUERY)) {
