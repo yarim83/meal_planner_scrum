@@ -36,7 +36,7 @@ public class Register extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/html/registration.html")
+        getServletContext().getRequestDispatcher("/jsp/registration.jsp")
                 .forward(request, response);
     }
 

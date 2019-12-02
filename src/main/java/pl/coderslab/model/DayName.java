@@ -7,14 +7,13 @@ public class DayName {
 
     @Override
     public String toString() {
-        return "Book [id=" + id + ", name=" + name + ", display_order=" + displayOrder;
+        return "Book [id=" + id + ", name=" + name + ", display_order=" + displayOrder +"]";
     }
 
 
     public DayName(){}
 
-    public DayName(int id, String name, int displayOrder) {
-        this.id = id;
+    public DayName(String name, int displayOrder) {
         this.name = name;
         this.displayOrder = displayOrder;
     }
