@@ -1,43 +1,39 @@
-<img alt="Logo" src="http://coderslab.pl/svg/logo-coderslab.svg" width="400">
+# O Projekcie
 
-### Przygotowanie – pliki css/js.
+Projekt strony z wizytówki wraz z prostą aplikacją do projektowania posiłków. Projekt został zrealizowany w ramach 
+zespołu programistycznego w oparciu o zwinne zarządzanie projektami ``SCRUM`` w technologii ``Agile``. Treść samej strony została 
+uzupełnona domyślym teksem ````Lorem Ipsum```` .
 
-Pliki **css** możemy umieścić w katalogu 
-````src/main/webapp/css````
-przy powyższej lokalizacji w plikach szablonów załączamy je w następujący sposób:
-````
-  <link href='<c:url value="/css/style.css"/>' rel="stylesheet" type="text/css">
-```` 
-Jako przykład został dołączony servlet `HomeServlet` wskazujący home.jsp, dla którego wyświetla się poprawny szablon strony głównej.
+![Screenshot](https://github.com/yarim83/szkola_programowania/blob/master/src/pl/coderslab/screens/DAO.png)
+![Screenshot](https://github.com/yarim83/szkola_programowania/blob/master/src/pl/coderslab/screens/DAO.png)
+![Screenshot](https://github.com/yarim83/szkola_programowania/blob/master/src/pl/coderslab/screens/DAO.png)
 
-### Dane do połączenia z bazą:
 
-Plik znajduje się w naszym projekcie w katalogu **src/main/webapp/META-INF**.
+##### AGILE / SCRUM  - Zwinne zarządzanie projektem
 
-`Zmodyfikuj znajdujące się w nim dane dotyczące połączenia.`
+###### Manifest zwinnego wytwarzania oprogramowania
 
-### W przypadku wystąpienia błędu:
-````
-javax.naming.NameNotFoundException: Name [jdbc/scrumlab] is not bound in this Context. Unable to find [jdbc].
-````
-wykonujemy następujące kroki:
+Odkrywamy nowe metody programowania dzięki praktyce w
+programowaniu i wspieraniu w nim innych. W wyniku naszej pracy,
+zaczęliśmy bardziej
+cenić:
 
-Wybierz z górnego menu File –> Project Structure...
+* ludzi i interakcje od procesów i narzędzi
+* działające oprogramowanie od szczegółowej dokumentacji
+* współpracę z klientem od negocjacji umów
+* reagowanie na zmiany od realizacji założonego planu.
 
-W okienku, które się pojawi, kliknij z lewej strony w Facets następnie **Web**.
+Oznacza to, że elementy wypisane po prawej są wartościowe, ale
+większą wartość mają dla nas te, które wypisano po lewej.
 
-Pojawi się okno, w którym kliknij **Add Application Server specific descriptor...**.
+### Model bazy danych oparty o MySQL
 
-![Screenshot](readme-img/context_03.png)
+* [MySQL Model](https://github.com/yarim83/szkola_programowania/tree/master/resources) 
 
-Wybierz z listy serwer **Tomcat** i zaakceptuj przyciskiem **OK**.
-
-![Screenshot](readme-img/context_04.png)
-
-Na liście pojawi się plik **Tomcat Context Descriptor**. Potwierdź przyciskiem **OK**.
-
-![Screenshot](readme-img/context_05.png)
-
-Plik znajduje się w naszym projekcie w katalogu **src/main/webapp/META-INF**.
-
-`Zmodyfikuj znajdujące się w nim dane dotyczące połączenia.`
+### Zastosowane technologie
+Ta sekcja przedstawia główne technologie wykorzystane w projekcie.
+* [JAVA](https://docs.oracle.com/en/java/)
+* [MySQL](https://www.mysql.com/)
+* [JSP](https://en.wikipedia.org/wiki/JavaServer_Pages)
+* [JBCrypt](https://mvnrepository.com/artifact/org.mindrot/jbcrypt)
+* [Agile / SCRUM](https://www.scrumguides.org/)
