@@ -4,9 +4,9 @@ Projekt strony z wizytówki wraz z prostą aplikacją do projektowania posiłkó
 zespołu programistycznego w oparciu o zwinne zarządzanie projektami ``SCRUM`` w technologii ``Agile``. Treść samej strony została 
 uzupełnona domyślym teksem ````Lorem Ipsum```` .
 
-![Screenshot](https://github.com/yarim83/szkola_programowania/blob/master/src/pl/coderslab/screens/DAO.png)
-![Screenshot](https://github.com/yarim83/szkola_programowania/blob/master/src/pl/coderslab/screens/DAO.png)
-![Screenshot](https://github.com/yarim83/szkola_programowania/blob/master/src/pl/coderslab/screens/DAO.png)
+![Screenshot](https://github.com/yarim83/meal_planner_scrum/blob/master/src/main/resources/screens/zaplanuj%20jedzonko_1.png)
+![Screenshot](https://github.com/yarim83/meal_planner_scrum/blob/master/src/main/resources/screens/zaplanuj%20jedzonko_2.png)
+![Screenshot](https://github.com/yarim83/meal_planner_scrum/blob/master/src/main/resources/screens/zaplanuj%20jedzonko_3.png)
 
 
 ##### AGILE / SCRUM  - Zwinne zarządzanie projektem
