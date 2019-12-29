@@ -28,7 +28,7 @@ większą wartość mają dla nas te, które wypisano po lewej.
 
 ### Model bazy danych oparty o MySQL
 
-* [MySQL Model](https://github.com/yarim83/szkola_programowania/tree/master/resources) 
+* [MySQL Model](https://github.com/yarim83/meal_planner_scrum/tree/master/src/main/resources/sql) 
 
 ### Zastosowane technologie
 Ta sekcja przedstawia główne technologie wykorzystane w projekcie.
